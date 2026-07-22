@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexaMart | Everything You Need, Delivered to Your Door</title>
+    <!-- FontAwesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Embedded Modern Styling (CSS) -->
+    <style>
+        /* --- Google Fonts & Core Variables --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #10b981; /* Fresh Delivery Green */
+            --secondary-color: #1e293b; /* Premium Dark Navy */
+            --light-bg: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Global Reset & Base Layout --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* --- Typography Elements --- */
+        h1, h2, h3 {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        /* --- Reusable Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #059669;
+            border-color: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- Header Navigation Bar --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo h1 span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1.2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+
+        .header-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* --- Hero Landing Section --- */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.85)), 
+                        url('https://images.unsplash.com/photo-1526367790999-0150786486a9?q=80&w=1470') no-repeat center center/cover;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero h2 {
+            color: var(--white);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h2 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* --- About & Core Values --- */
+        .about-section {
+            padding: 2rem 0;
+        }
+
+        .subheading {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .mission-vision {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .mv-box {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .mv-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--secondary-color);
+        }
+
+        .mv-box h3 i {
+            color: var(--primary-color);
+        }
+
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--secondary-color), #0f172a);
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Operational Flow (How It Works) --- */
+        .how-it-works {
+            background-color: var(--light-bg);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            position: relative;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #edf2f7;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .step-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        /* --- Marketplace Service Offerings --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-box {
+            background: var(--white);
+            border: 1px solid #e2e8f0;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .service-box i {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .service-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+
+        /* --- Value Propositions (Benefits) --- */
+        .benefits-section {
+            background-color: #111827;
+            color: var(--white);
+        }
+
+        .benefit-block h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .benefit-block.business h2 span {
+            color: var(--primary-color);
+        }
+
+        .benefit-block.customers h2 span {
+            color: #38bdf8;
+        }
+
+        .benefit-block ul {
+            list-style: none;
+        }
+
+        .benefit-block ul li {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .benefit-block.business ul li i {
+            color: var(--primary-color);
+        }
+
+        .benefit-block.customers ul li i {
+            color: #38bdf8;
+        }
+
+        /* --- Revenue Architecture & Expansion --- */
+        .revenue-goals-section {
+            background-color: var(--light-bg);
+        }
+
+        .card-info {
+            background-color: var(--white);
+            padding: 3.5rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-info.dark-bg {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: var(--white);
+            border: none;
+        }
+
+        .card-info h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-info.dark-bg h2 {
+            color: var(--white);
+        }
+
+        .card-info h2 i {
+            color: var(--primary-color);
+        }
+
+        .custom-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .custom-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .custom-list li::before {
+            content: "➔";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* --- Conversion Footer --- */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2.5rem 0;
+            font-size: 0.95rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* --- Responsive Viewport Adaptation --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            .hero h2 {
+                font-size: 2.4rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            .btn-secondary {
+                margin-left: 0;
+            }
+            .container {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <h1>Nexa<span>Mart</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#revenue">Model & Goals</a></li>
+                </ul>
+            </nav>
+            <a href="#about" class="btn header-btn">Partner With Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Introduction -->
+    <section class="hero">
+        <div class="container">
+            <h2>Everything You Need, <br><span>Delivered to Your Door.</span></h2>
+            <p>Connecting you beautifully with trusted local businesses right across Ethiopia through one seamless digital marketplace.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Explore More</a>
+                <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section Overview -->
+    <section id="about" class="about-section">
+        <div class="container grid-2">
+            <div class="about-text">
+                <span class="subheading">Who We Are</span>
+                <h2>Empowering Local Businesses, Simplifying Shopping</h2>
+                <p>NexaMart is a progressive digital marketplace connecting customers with trusted local businesses on one easy-to-use platform. Instead of managing a private centralized warehouse, NexaMart partners directly with neighborhood shops, supermarkets, pharmacies, restaurants, and apparel outlets to showcase their inventory live online.</p>
+                
+                <div class="mission-vision">
+                    <div class="mv-box">
+                        <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
+                        <p>To help local businesses expand exponentially by bringing them online while making shopping remarkably faster, safer, and more convenient for consumers.</p>
+                    </div>
+                    <div class="mv-box">
+                        <h3><i class="fa-solid fa-eye"></i> Our Vision</h3>
+                        <p>To establish NexaMart as Ethiopia's most relied-upon online marketplace and hyper-local delivery network, bridging millions of shoppers with businesses nationwide.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <h3>Coming Soon</h3>
+                    <p>Advanced Mobile Applications & Web Platform</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Verified Local Merchant Partnerships</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operational Workflow -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Simple Logistics Framework</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Merchant Onboarding</h3>
+                    <p>Trusted local businesses join the NexaMart platform as verified digital partners.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Product Cataloging</h3>
+                    <p>Products are beautifully showcased across social ecosystems and our upcoming app framework.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Seamless Ordering</h3>
+                    <p>Customers quickly browse extensive local options and seamlessly execute orders.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Store Preparation</h3>
+                    <p>The assigned partner business carefully fulfills, packs, and prepares the order immediately.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>Smart Dispatch</h3>
+                    <p>NexaMart dispatch algorithms swiftly coordinate secure courier pick-up from the vendor.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>Doorstep Delivery</h3>
+                    <p>The consumer receives their ordered items rapidly, safely, and highly conveniently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Suite -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Ecosystem Offerings</h2>
+                <p>Comprehensive Delivery Verticals</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-box"><i class="fa-solid fa-basket-shopping"></i> <h3>Online Shopping</h3></div>
+                <div class="service-box"><i class="fa-solid fa-cart-shopping"></i> <h3>Grocery Logistics</h3></div>
+                <div class="service-box"><i class="fa-solid fa-utensils"></i> <h3>Restaurant Food</h3></div>
+                <div class="service-box"><i class="fa-solid fa-capsules"></i> <h3>Pharmacy & Wellness</h3></div>
+                <div class="service-box"><i class="fa-solid fa-laptop"></i> <h3>Electronics & Apparel</h3></div>
+                <div class="service-box"><i class="fa-solid fa-house"></i> <h3>Household Products</h3></div>
+                <div class="service-box"><i class="fa-solid fa-rectangle-ad"></i> <h3>Business Digital Ads</h3></div>
+                <div class="service-box"><i class="fa-solid fa-truck-fast"></i> <h3>Express Delivery</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Value Propositions -->
+    <section id="benefits" class="benefits-section">
+        <div class="container grid-2">
+            <div class="benefit-block business">
+                <h2>Benefits for <span>Businesses</span></h2>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check"></i> Scale outward to acquire massive consumer traffic effortlessly.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Elevate absolute gross sales without high e-commerce overhead costs.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Capitalize on comprehensive corporate online marketing campaigns.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Receive orders systematically organized directly through NexaMart.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Concentrate solely on product quality while we fetch your buyers.</li>
+                </ul>
+            </div>
+            <div class="benefit-block customers">
+                <h2>Benefits for <span>Customers</span></h2>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check"></i> Aggregate distinct, varied storefront orders into one portal.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Economize time and eliminate logistical friction or travel delays.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Rely safely on secure, professional door-to-door couriers.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Secure transparency by dealing with fully vetted merchant partners.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Interact with a profoundly intuitive and rapid order sequence.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Economics & Growth Horizon -->
+    <section id="revenue" class="revenue-goals-section">
+        <div class="container grid-2">
+            <div class="card-info">
+                <h2><i class="fa-solid fa-wallet"></i> Sustainability Architecture</h2>
+                <p>How NexaMart generates reliable revenue to maintain system scalability:</p>
+                <ul class="custom-list">
+                    <li><strong>Transactional Commission:</strong> Calculated per successfully fulfilled order.</li>
+                    <li><strong>Dynamic Delivery Logistics:</strong> Flat or distanced-based delivery service fees.</li>
+                    <li><strong>Premium Enterprise Marketing:</strong> Native tier spaces for ambitious vendors.</li>
+                    <li><strong>Targeted Placement Ads:</strong> Sponsored slots ensuring heightened inventory eyes.</li>
+                </ul>
+            </div>
+            <div class="card-info dark-bg">
+                <h2><i class="fa-solid fa-rocket"></i> Forward Milestones</h2>
+                <p>Where our development roadmaps point next:</p>
+                <ul class="custom-list">
+                    <li>Deploy high-performance native iOS and Android retail apps.</li>
+                    <li>Scale active delivery networks into major tech hubs across Ethiopia.</li>
+                    <li>Integrate thousands of micro-merchants into our unified ecosystem.</li>
+                    <li>Foster job creation for young localized customer success teams and couriers.</li>
+                    <li>Advance progressively toward becoming an absolute continental leader in commerce.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Layout Footer -->
+    <footer>
+        <div class="container" style="padding: 0;">
+            <p>&copy; 2026 NexaMart. All Rights Reserved. Connecting Ethiopia, One Seamless Delivery at a Time.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
